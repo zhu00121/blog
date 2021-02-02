@@ -10,13 +10,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Why CE?" />
 <meta property="og:description" content="Why CE?" />
-<link rel="canonical" href="https://zhu00121.github.io/blog/2021/01/31/Cross-entropy-in-Deep-learning.html" />
-<meta property="og:url" content="https://zhu00121.github.io/blog/2021/01/31/Cross-entropy-in-Deep-learning.html" />
+<link rel="canonical" href="https://zhu00121.github.io/blog/2021/02/01/Cross-entropy-in-Deep-learning.html" />
+<meta property="og:url" content="https://zhu00121.github.io/blog/2021/02/01/Cross-entropy-in-Deep-learning.html" />
 <meta property="og:site_name" content="Yi’ 1st blog" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-31T00:00:00-06:00" />
+<meta property="article:published_time" content="2021-02-01T00:00:00-06:00" />
 <script type="application/ld+json">
-{"url":"https://zhu00121.github.io/blog/2021/01/31/Cross-entropy-in-Deep-learning.html","@type":"BlogPosting","headline":"Cross Entropy In Deep Learning","dateModified":"2021-01-31T00:00:00-06:00","datePublished":"2021-01-31T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://zhu00121.github.io/blog/2021/01/31/Cross-entropy-in-Deep-learning.html"},"description":"Why CE?","@context":"https://schema.org"}</script>
+{"url":"https://zhu00121.github.io/blog/2021/02/01/Cross-entropy-in-Deep-learning.html","@type":"BlogPosting","headline":"Cross Entropy In Deep Learning","dateModified":"2021-02-01T00:00:00-06:00","datePublished":"2021-02-01T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://zhu00121.github.io/blog/2021/02/01/Cross-entropy-in-Deep-learning.html"},"description":"Why CE?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://zhu00121.github.io/blog/feed.xml" title="Yi' 1st blog" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -71,8 +71,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Cross Entropy In Deep Learning</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-31T00:00:00-06:00" itemprop="datePublished">
-        Jan 31, 2021
+    <h1 class="post-title p-name" itemprop="name headline">Cross Entropy In Deep Learning</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-02-01T00:00:00-06:00" itemprop="datePublished">
+        Feb 1, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -100,7 +100,7 @@ window.onload = wrap_img;
 
 <p>Before I show an example of calculating CE, I would like to show you where this CE sits in our model and what it does in general.</p>
 
-<p><img src="assets/img/2021-01-31-Cross-entropy-in-Deep-learning/media/image1.jpeg" alt="CE" /></p>
+<p><img src="assets/img/2021-02-01-Cross-entropy-in-Deep-learning/media/image1.jpeg" alt="CE" /></p>
 
 <p>The CE function sits right after Softmax function (which is used to calculate the probabilities of this sample for being each of the classes in a classification problem). It has two inputs: outputs from Softmax function and the one-hot encodings of the targets.</p>
 
@@ -112,7 +112,7 @@ window.onload = wrap_img;
 
 <p>Suppose we need to classify an image into one of the three classes (e.g. cat/dog/human). After we feed this image into our inner layers of the model and the Softmax function, it gives us an output [0.8, 0.1, 0.1], where the three numbers respectively represent the probability of this image being a cat/dog/human. Now we know that the actual label (I.e. target) is [1,0,0] (in a 1-hot-encoded way), the question now would be “How do we figure out a way to quantify the difference between predictions and targets?”</p>
 
-<p><img src="assets/img/2021-01-31-Cross-entropy-in-Deep-learning/media/image2.jpeg" alt="CE2" /></p>
+<p><img src="assets/img/2021-02-01-Cross-entropy-in-Deep-learning/media/image2.jpeg" alt="CE2" /></p>
 
 <p>A simple way to do is calculate the dot product of these two vectors. The idea of multiplying these two vectors would give us a results that represents how similar they are.</p>
 
@@ -120,13 +120,13 @@ window.onload = wrap_img;
 
 <p><strong>Here is how we calculate CE:</strong></p>
 
-<p><img src="assets/img/2021-01-31-Cross-entropy-in-Deep-learning/media/image3.jpeg" alt="CE3" /></p>
+<p><img src="assets/img/2021-02-01-Cross-entropy-in-Deep-learning/media/image3.jpeg" alt="CE3" /></p>
 
 <p>Pi is the output of the Softmax function and Ti is the target. What CE does is that it multiplies the log of each number in the prediction with target and add them all up. Since the log usually makes it negative, we have a ‘-’ at front to make the number positive.</p>
 
 <p>Additionally, we could take the average of this CE(P,T) so that even when we have a large number of data points (I.e. when i is large), we still end up having a small number of cross-entropy.</p>
 
-  </div><a class="u-url" href="/blog/2021/01/31/Cross-entropy-in-Deep-learning.html" hidden></a>
+  </div><a class="u-url" href="/blog/2021/02/01/Cross-entropy-in-Deep-learning.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
